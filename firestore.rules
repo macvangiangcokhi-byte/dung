@@ -1,0 +1,30 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    match /questionSets/{setId} {
+      allow read, write: if signedIn();
+    }
+
+    match /rooms/{roomId} {
+      allow read: if true;
+      allow create, update, delete: if signedIn();
+
+      match /private/{docId} {
+        allow read, write: if signedIn();
+      }
+
+      match /submissions/{studentKey} {
+        allow create: if !exists(/databases/$(database)/documents/rooms/$(roomId)/submissions/$(studentKey))
+          && request.resource.data.studentKey == studentKey;
+        allow read, delete: if signedIn();
+        allow update: if false;
+      }
+    }
+  }
+}

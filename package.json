@@ -1,0 +1,12 @@
+{
+  "name": "exam-system-full-no-api-fixed",
+  "version": "1.0.0",
+  "description": "Online exam system without OpenAI/Gemini API: Firebase Auth, Firestore, TXT/PDF/DOCX import, anti-cheat, Excel export, Vercel deploy.",
+  "scripts": {
+    "start": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "devDependencies": {
+    "vercel": "latest"
+  }
+}
