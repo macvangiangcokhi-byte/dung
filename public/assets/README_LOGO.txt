@@ -1,0 +1,1 @@
+Đặt logo trường tại đây và đổi tên thành ntd.jpg
